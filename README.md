@@ -50,10 +50,6 @@ $ pnpm i -D vite @vitejs/plugin-react
 
 - TypeScript 사용 시 추가 설정 없이도 타입스크립트 파일(.ts,.tsx)을 자동으로 처리해줍니다.
 
-```bash
-$ pnpm i -D vite @vitejs/plugin-react
-```
-
 <br />
 <br />
 
@@ -62,6 +58,15 @@ $ pnpm i -D vite @vitejs/plugin-react
 **프로젝트 루트에 `vite.config.js`파일을 생성하고 설치한 `react`플러그인을 제공합니다.**
 
 - 해당 파일에선 프로젝트의 빌드와 서버설정등 추가적인 설정을 할 수 있습니다.
+
+```js
+import {defineConfig} from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+});
+```
 
 <br />
 <br />
@@ -88,4 +93,51 @@ Vite는 기본적으로 개발서버 시작 시 `index.html`을 파일의 진입
 </html>
 ```
 
-## 4.
+<br />
+<br />
+
+## 4. 기본 컴포넌트(App)과 진입점 생성하기
+
+**src 폴더 생성 후 내부에 `main.jsx` 파일을 생성합니다.**
+
+- 추가적으로 src 내부에 App.jsx를 렌더하도록 정의하고 초기 템플릿을 생성합니다.
+
+```jsx
+/* src/main.jsx */
+
+import {createRoot} from "react-dom/client";
+import App from "./App";
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+root.render(<App />);
+
+/* src/App.jsx */
+function App() {
+  return (
+    <>
+      <div>App</div>
+    </>
+  );
+}
+
+export default App;
+```
+
+## 5. 개발 서버 시작
+
+- 개발서버 시작에 앞서 vite 개발서버를 시작하기 위한 명령어를 `package.json`파일에 등록해야합니다.
+- 다음 아래와 같은 스크립트를 추가적으로 구성합니다.
+
+```json
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+```
+
+- 이후 `pnpm vite` 명령어를 `cli`내 입력함으로 써 개발서버를 시작할 수 있습니다.
+
+![alt text](image.png)
