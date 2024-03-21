@@ -48,3 +48,25 @@ Vite와 Vite 구성을 위한 플러그인인 `@vitejs/plugin-react`를 설치�
 ```bash
 $ pnpm i -D vite @vitejs/plugin-react
 ```
+
+## 2. HTML 파일 생성하기
+
+Vite는 기본적으로 개발서버 시작 시 `index.html`을 파일의 진입적으로 사용합니다.
+
+- 따라서 프로젝트 루트에 `index.html`파일을 생성하고 아래와 같은 내용을 추가합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React + Vite</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+```
